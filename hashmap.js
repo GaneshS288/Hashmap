@@ -1,10 +1,19 @@
-class HashMap {
+export class HashMap {
   #capacity;
   #loadFactor;
   constructor() {
     this.#capacity = 16;
     this.#loadFactor = 0.8;
-    this.array = addBuckets();
+    this.array = [];
+    this.addBuckets();
+  }
+
+  addBuckets() {
+    for(let i = 0; i < this.#capacity; i++) {
+        if(this.array[i] === undefined) {
+            this.array[i] = "list";
+        }
+    }
   }
 
   hash(key) {
@@ -17,4 +26,6 @@ class HashMap {
 
     return hashCode;
   }
+
+
 }

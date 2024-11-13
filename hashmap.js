@@ -48,11 +48,20 @@ export class HashMap {
     this.checkIndexRange(index);
     let bucket = this.buckets[index];
 
-    if(bucket.contains === false) return null;
+    if (bucket.contains(key) === false) return null;
     else {
       let node = bucket.at(bucket.find(key));
       return node[key];
     }
+  }
+
+  has(key) {
+    let index = this.hash(key);
+    this.checkIndexRange(index);
+    let bucket = this.buckets[index];
+
+    if (bucket.contains(key)) return true;
+    else return false;
   }
 
   checkIndexRange(index) {

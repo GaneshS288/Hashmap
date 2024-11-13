@@ -7,14 +7,14 @@ export class HashMap {
   constructor(capacity = 16, loadFactor = 0.8) {
     this.#capacity = capacity;
     this.#loadFactor = loadFactor;
-    this.array = [];
+    this.buckets = [];
     this.addBuckets();
   }
 
   addBuckets() {
     for (let i = 0; i < this.#capacity; i++) {
-      if (this.array[i] === undefined) {
-        this.array[i] = new LinkedList();
+      if (this.buckets[i] === undefined) {
+        this.buckets[i] = new LinkedList();
       }
     }
   }
@@ -28,5 +28,24 @@ export class HashMap {
     }
 
     return hashCode;
+  }
+
+  set(key, value) {
+    let index = this.hash(key);
+    this.checkIndexRange(index);
+    let bucket = this.buckets[index];
+
+    if (bucket.contains(key)) {
+      let nodeIndex = bucket.find(key);
+      bucket.at(nodeIndex)[key] = value;
+    } else {
+      bucket.append(key, value);
+    }
+  }
+
+  checkIndexRange(index) {
+    if (index < 0 || index >= this.buckets.length) {
+      throw new Error("Trying to access index out of bounds");
+    }
   }
 }

@@ -64,6 +64,16 @@ export class HashMap {
     else return false;
   }
 
+  remove(key) {
+    let index = this.hash(key);
+    this.checkIndexRange(index);
+    let bucket = this.buckets[index];
+
+    if (bucket.contains(key)) {
+      return bucket.removeAt(bucket.find(key));
+    } else return false;
+  }
+
   checkIndexRange(index) {
     if (index < 0 || index >= this.buckets.length) {
       throw new Error("Trying to access index out of bounds");

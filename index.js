@@ -4,4 +4,9 @@ let map = new HashMap();
 map.addBuckets();
 map.set("ganesh", "this is my name");
 map.set("hola", "new value")
-console.log(map.has("hola"));
+
+console.log(map.buckets[6].head)
+console.log(map.remove("ganesh"))
+console.log(map.buckets[6].head)
+console.log(map.remove("hoda"));
+console.log(map.buckets[6].head)

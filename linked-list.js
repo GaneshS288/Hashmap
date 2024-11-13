@@ -139,8 +139,8 @@ export class LinkedList {
     }
   }
 
-  insertAt(string, targetIndex) {
-    let node = new Node(string);
+  insertAt(key, value, targetIndex) {
+    let node = new Node(key, value);
     let currentNode = this.#head;
     let previousNode;
     let currentIndex = 0;
@@ -158,6 +158,29 @@ export class LinkedList {
         break;
       } else if (currentNode === null && currentIndex < targetIndex) {
         return "Error: range overflow, this index doesn't exist";
+      } else {
+        currentIndex += 1;
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+      }
+    }
+  }
+
+  removeAt(targetIndex) {
+    let currentNode = this.#head;
+    let previousNode = null;
+    let currentIndex = 0;
+
+    if (currentNode && targetIndex === 0) {
+      this.#head = currentNode.next; 
+      return true;
+    }
+
+    while (true) {
+      if (!currentNode) return false;
+      else if (targetIndex === currentIndex) {
+        previousNode.next = currentNode.next;
+        return true;
       } else {
         currentIndex += 1;
         previousNode = currentNode;

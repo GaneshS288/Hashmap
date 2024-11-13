@@ -1,18 +1,21 @@
+import { LinkedList } from "./linked-list.js";
+
 export class HashMap {
   #capacity;
   #loadFactor;
-  constructor() {
-    this.#capacity = 16;
-    this.#loadFactor = 0.8;
+
+  constructor(capacity = 16, loadFactor = 0.8) {
+    this.#capacity = capacity;
+    this.#loadFactor = loadFactor;
     this.array = [];
     this.addBuckets();
   }
 
   addBuckets() {
-    for(let i = 0; i < this.#capacity; i++) {
-        if(this.array[i] === undefined) {
-            this.array[i] = "list";
-        }
+    for (let i = 0; i < this.#capacity; i++) {
+      if (this.array[i] === undefined) {
+        this.array[i] = new LinkedList();
+      }
     }
   }
 
@@ -21,11 +24,9 @@ export class HashMap {
 
     const primeNumber = 31;
     for (let i = 0; i < key.length; i++) {
-      hashCode = primeNumber * hashCode + key.charCodeAt(i);
+      hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % this.#capacity;
     }
 
     return hashCode;
   }
-
-
 }

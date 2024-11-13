@@ -43,6 +43,18 @@ export class HashMap {
     }
   }
 
+  get(key) {
+    let index = this.hash(key);
+    this.checkIndexRange(index);
+    let bucket = this.buckets[index];
+
+    if(bucket.contains === false) return null;
+    else {
+      let node = bucket.at(bucket.find(key));
+      return node[key];
+    }
+  }
+
   checkIndexRange(index) {
     if (index < 0 || index >= this.buckets.length) {
       throw new Error("Trying to access index out of bounds");

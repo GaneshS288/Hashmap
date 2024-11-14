@@ -13,4 +13,7 @@ map.set("song", "rock on");
 map.set("fruit", "mango");
 map.clear();
 
-console.log(map.length());
+
+
+
+

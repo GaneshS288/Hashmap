@@ -14,5 +14,6 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 test.set('moon', 'silver')
-
+test.remove('elephant');
+test.remove('jacket');
 console.log(test.entries());

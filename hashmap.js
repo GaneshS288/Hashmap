@@ -73,13 +73,11 @@ export class HashMap {
   }
 
   remove(key) {
-    let index = this.hash(key);
-    this.checkIndexRange(index);
-    let bucket = this.buckets[index];
-
-    if (bucket.contains(key)) {
-      return bucket.removeAt(bucket.find(key));
-    } else return false;
+    this.buckets.forEach((bucket) => {
+      if (bucket.contains(key)) {
+        return bucket.removeAt(bucket.find(key));
+      } else return false;
+    })
   }
 
   length() {

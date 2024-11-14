@@ -74,6 +74,14 @@ export class HashMap {
     } else return false;
   }
 
+  length() {
+    let length = 0;
+    this.buckets.forEach((bucket) => {
+      length += bucket.size();
+    })
+    return length;
+  }
+
   checkIndexRange(index) {
     if (index < 0 || index >= this.buckets.length) {
       throw new Error("Trying to access index out of bounds");

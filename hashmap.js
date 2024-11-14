@@ -88,6 +88,18 @@ export class HashMap {
     }
   }
 
+  keys() {
+    let keys = [];
+
+    this.buckets.forEach((bucket) => {
+      let bucketEntries = bucket.entries();
+      bucketEntries = bucketEntries.map((entry) => entry[0]);
+      keys = keys.concat(bucketEntries);
+    })
+
+    return keys;
+  }
+
   checkIndexRange(index) {
     if (index < 0 || index >= this.buckets.length) {
       throw new Error("Trying to access index out of bounds");

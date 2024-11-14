@@ -4,7 +4,7 @@ export class HashMap {
   #capacity;
   #loadFactor;
 
-  constructor(capacity = 16, loadFactor = 0.8) {
+  constructor(capacity = 16, loadFactor = 0.75) {
     this.#capacity = capacity;
     this.#loadFactor = loadFactor;
     this.buckets = [];
@@ -16,6 +16,13 @@ export class HashMap {
       if (this.buckets[i] === undefined) {
         this.buckets[i] = new LinkedList();
       }
+    }
+  }
+
+  checkCapacity() {
+    if(this.length() >= (this.#loadFactor * this.#capacity)) {
+      this.#capacity = this.#capacity * 2;
+      this.addBuckets();
     }
   }
 
@@ -31,6 +38,7 @@ export class HashMap {
   }
 
   set(key, value) {
+    this.checkCapacity();
     let index = this.hash(key);
     this.checkIndexRange(index);
     let bucket = this.buckets[index];
@@ -110,6 +118,16 @@ export class HashMap {
     });
 
     return values;
+  }
+
+  entries() {
+    let entries = [];
+
+    this.buckets.forEach((bucket) => {
+      entries = entries.concat(bucket.entries());
+    });
+
+    return entries;
   }
 
   checkIndexRange(index) {

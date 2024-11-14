@@ -78,12 +78,12 @@ export class HashMap {
     let length = 0;
     this.buckets.forEach((bucket) => {
       length += bucket.size();
-    })
+    });
     return length;
   }
 
   clear() {
-    for(let i = 0; i < this.#capacity; i++) {
+    for (let i = 0; i < this.#capacity; i++) {
       this.buckets[i] = new LinkedList();
     }
   }
@@ -95,9 +95,21 @@ export class HashMap {
       let bucketEntries = bucket.entries();
       bucketEntries = bucketEntries.map((entry) => entry[0]);
       keys = keys.concat(bucketEntries);
-    })
+    });
 
     return keys;
+  }
+
+  values() {
+    let values = [];
+
+    this.buckets.forEach((bucket) => {
+      let bucketEntries = bucket.entries();
+      bucketEntries = bucketEntries.map((entry) => entry[1]);
+      values = values.concat(bucketEntries);
+    });
+
+    return values;
   }
 
   checkIndexRange(index) {

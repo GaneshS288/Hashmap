@@ -172,7 +172,7 @@ export class LinkedList {
     let currentIndex = 0;
 
     if (currentNode && targetIndex === 0) {
-      this.#head = currentNode.next; 
+      this.#head = currentNode.next;
       return true;
     }
 
@@ -193,8 +193,8 @@ export class LinkedList {
     let currentNode = this.#head;
     let entries = [];
 
-    while(true) {
-      if(!currentNode) return entries;
+    while (true) {
+      if (!currentNode) return entries;
       else {
         let key = Object.keys(currentNode).filter((item) => item !== "next")[0];
         entries.push([key, currentNode[key]]);

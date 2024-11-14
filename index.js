@@ -11,5 +11,6 @@ map.set("time", "morning");
 map.set("show", "courage the cowardly dog");
 map.set("song", "rock on");
 map.set("fruit", "mango");
+map.clear();
 
 console.log(map.length());

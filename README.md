@@ -29,7 +29,7 @@ A hashmap implementation in javascript. The HashMap constructor has three proper
 
 **keys** - returns an array of all the keys in HashMap.
 
-**values** returns an array of all the values in HashMap.
+**values** - returns an array of all the values in HashMap.
 
-**entries** returns an array of all the key-value pairs in HashMap.
+**entries** - returns an array of all the key-value pairs in HashMap.
 
